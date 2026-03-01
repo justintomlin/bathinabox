@@ -129,7 +129,7 @@ export default function StylesPage() {
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent" />
-                  <div className="absolute bottom-4 left-4 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold text-neutral-900 backdrop-blur">
+                  <div className="absolute bottom-4 left-4 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold text-neutral-900 backdrop-blur opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     {img.label}
                   </div>
                 </a>

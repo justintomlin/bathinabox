@@ -89,12 +89,15 @@ export default function Home() {
               </div>
 
               <div className="mt-4 grid gap-3 md:grid-cols-2">
+                {/* UPDATED: Now shows actual product items instead of process items */}
                 <div className="rounded-2xl border p-4">
-                  <div className="text-sm font-semibold">What you get</div>
+                  <div className="text-sm font-semibold">{"What's included"}</div>
                   <ul className="mt-2 space-y-1 text-sm text-neutral-600">
-                    <li>Curated package options</li>
-                    <li>Quote + spec checklist</li>
-                    <li>Freight and logistics included</li>
+                    <li>Vanity + porcelain countertop</li>
+                    <li>Faucet + shower system</li>
+                    <li>Waterproof wall panels</li>
+                    <li>Shower base + door</li>
+                    <li>Modular LVT flooring</li>
                   </ul>
                 </div>
                 <div className="rounded-2xl border p-4">
@@ -111,15 +114,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Credibility band */}
+      {/* Credibility band — UPDATED: replaced placeholder copy with real value props */}
       <section className="border-y bg-[#f3efe6]">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-8 text-sm md:grid-cols-4">
-          {["Package clarity", "Freight-aware quotes", "Pro-friendly options", "Fast turnaround"].map((t) => (
-            <div key={t} className="rounded-2xl border bg-[#fffdf8] p-4 text-neutral-700 shadow-sm">
-              <div className="font-semibold text-neutral-950">{t}</div>
-              <div className="mt-1 text-xs text-neutral-500">Designed to reduce friction.</div>
-            </div>
-          ))}
+          <div className="rounded-2xl border bg-[#fffdf8] p-4 text-neutral-700 shadow-sm">
+            <div className="font-semibold text-neutral-950">One complete package</div>
+            <div className="mt-1 text-xs text-neutral-500">Everything you need, curated and coordinated.</div>
+          </div>
+          <div className="rounded-2xl border bg-[#fffdf8] p-4 text-neutral-700 shadow-sm">
+            <div className="font-semibold text-neutral-950">Freight included</div>
+            <div className="mt-1 text-xs text-neutral-500">Quotes are freight-aware. No surprise shipping costs.</div>
+          </div>
+          <div className="rounded-2xl border bg-[#fffdf8] p-4 text-neutral-700 shadow-sm">
+            <div className="font-semibold text-neutral-950">Built for pros</div>
+            <div className="mt-1 text-xs text-neutral-500">BOM you can hand straight to your installer.</div>
+          </div>
+          <div className="rounded-2xl border bg-[#fffdf8] p-4 text-neutral-700 shadow-sm">
+            <div className="font-semibold text-neutral-950">Quote in 1 business day</div>
+            <div className="mt-1 text-xs text-neutral-500">Give us scope + ZIP and we move fast.</div>
+          </div>
         </div>
       </section>
 
@@ -163,6 +176,74 @@ export default function Home() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Package Contents */}
+      <section className="border-t bg-[#f3efe6]">
+        <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight">{"What's included"}</h2>
+            <p className="mt-2 max-w-2xl text-neutral-600">
+              Every package ships with everything you need for a complete, install-ready bathroom. Start with the base, then add what fits your project.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {/* Base Package */}
+            <div className="rounded-3xl border bg-white p-6 shadow-sm">
+              <div className="text-sm font-semibold uppercase tracking-wide text-neutral-400">Every package includes</div>
+              <ul className="mt-4 space-y-3">
+                {[
+                  "Vanity with integrated porcelain countertop",
+                  "Faucet",
+                  "Shower base",
+                  "Shower door",
+                  "Shower valve, trim + showerhead",
+                  "Waterproof wall panels",
+                  "Modular LVT flooring",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-neutral-700">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white text-xs">
+                      ✓
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Available Additions */}
+            <div className="rounded-3xl border bg-white p-6 shadow-sm">
+              <div className="text-sm font-semibold uppercase tracking-wide text-neutral-400">Available additions</div>
+              <ul className="mt-4 space-y-3">
+                {[
+                  "Bathroom accessories (towel bars, rings + more)",
+                  "Toilet — floor mount or wall mounted",
+                  "Bidet toilet seat",
+                  "Heated towel warmer",
+                  "LED smart mirror",
+                  "Steam unit",
+                  "Shower niche",
+                  "Grab bars",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-neutral-700">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#f3efe6] text-neutral-600 text-xs">
+                      +
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <p className="mt-6 text-sm text-neutral-500">
+            Want to see what each item looks like in your chosen style?{" "}
+            <Link href="/styles" className="underline underline-offset-2 hover:text-neutral-800">
+              Explore the style collections →
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -232,20 +313,24 @@ export default function Home() {
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {[
               {
-                q: "Is this only for contractors?",
+                q: "Do I need to be a contractor to order?",
                 a: "No. We're contractor-friendly, but homeowners can request a guided package quote too.",
               },
               {
-                q: "Do you install?",
-                a: "Not currently. The model is package + logistics clarity. Install partner options can come later.",
+                q: "Does Bath-in-a-Box handle installation?",
+                a: "Not currently. Our model is package + logistics clarity.",
               },
               {
-                q: "How fast can you quote?",
-                a: "If we have ZIP + scope + basic dims, we can usually turn a quote within 1 business day.",
+                q: "How quickly can I get a quote?",
+                a: "Give us your ZIP and scope and you'll get pricing instantly.",
               },
               {
-                q: "Can I customize beyond the package?",
-                a: "Yes. Packages are the baseline for speed. Customization is where it matters most.",
+                q: "Can I swap items or adjust quantities?",
+                a: "Yes. Packages are the baseline for speed, but customization is where it matters most. Your quote will reflect your exact configuration.",
+              },
+              {
+                q: "What are the lead times and when will my order arrive?",
+                a: "Most items ship within 2–8 weeks depending on what's in your package. Specialty items like shower doors can run 6–8 weeks, and some wall panel selections may take 12–14 weeks. Everything is delivered to your door — we'll keep you updated on timing as your order comes together.",
               },
             ].map((f) => (
               <div key={f.q} className="rounded-3xl border bg-white p-6 shadow-sm">

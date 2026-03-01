@@ -20,8 +20,9 @@ function LogoMark() {
 }
 
 const navLinks = [
-  { href: "/#styles", label: "Styles" },
+  { href: "/styles", label: "Styles" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/brand-partners", label: "Brand Partners" },
   { href: "/trade-partners", label: "Trade Partners" },
   { href: "/process", label: "Process" },
   { href: "/#faq", label: "FAQ" },
@@ -54,7 +55,7 @@ export default function Header() {
         {/* Right side: CTA + mobile toggle */}
         <div className="flex items-center gap-3">
           <Link
-            href="/#quote"
+            href="/#configurator"
             className="rounded-xl bg-[#1f3b34] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#18312b]"
           >
             Get a Quote
