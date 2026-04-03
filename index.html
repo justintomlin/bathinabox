@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bath in a Box — Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f2;
+      --white: #ffffff;
+      --ink: #1a1a1a;
+      --mid: #888;
+      --soft: #d4cfc9;
+      --accent: #b5a898;
+      --accent-dark: #7a6e64;
+      --border: #e8e4df;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      overflow: hidden;
+    }
+
+    /* Subtle noise texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Left decorative bar */
+    .side-bar {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      z-index: 2;
+    }
+
+    /* Main layout */
+    main {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+    }
+
+    .container {
+      max-width: 680px;
+      width: 100%;
+    }
+
+    /* Logo / Brand */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 72px;
+      animation: fadeUp 0.9s ease both;
+    }
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border: 1.5px solid var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* Status chip */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      padding: 5px 14px 5px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 40px;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-dark);
+      animation: breathe 3s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Headline */
+    .headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 10vw, 100px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      animation: fadeUp 0.9s 0.15s ease both;
+    }
+    .headline em {
+      font-style: italic;
+      color: var(--accent-dark);
+    }
+
+    .headline-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 300;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 48px;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    /* Thin rule */
+    .rule {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 40px;
+      animation: fadeUp 0.9s 0.25s ease both;
+    }
+
+    /* Description */
+    .description {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--mid);
+      max-width: 460px;
+      margin-bottom: 52px;
+      animation: fadeUp 0.9s 0.3s ease both;
+    }
+
+    /* Email form */
+    .form-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 12px;
+      animation: fadeUp 0.9s 0.35s ease both;
+    }
+    .form-wrapper {
+      display: flex;
+      gap: 0;
+      max-width: 420px;
+      margin-bottom: 72px;
+      animation: fadeUp 0.9s 0.4s ease both;
+    }
+    .form-wrapper input {
+      flex: 1;
+      padding: 13px 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-right: none;
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-wrapper input::placeholder { color: var(--soft); }
+    .form-wrapper input:focus { border-color: var(--accent); }
+    .form-wrapper button {
+      padding: 13px 22px;
+      background: var(--ink);
+      color: var(--bg);
+      border: 1px solid var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .form-wrapper button:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    /* Three pillars */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      background: var(--white);
+      animation: fadeUp 0.9s 0.5s ease both;
+    }
+    .pillar {
+      padding: 28px 24px;
+      border-right: 1px solid var(--border);
+    }
+    .pillar:last-child { border-right: none; }
+    .pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--accent-dark);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .pillar-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 24px 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeUp 0.9s 0.6s ease both;
+    }
+    footer span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+    footer a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--ink); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 560px) {
+      main { padding: 48px 24px; }
+      .pillars { grid-template-columns: 1fr; }
+      .pillar { border-right: none; border-bottom: 1px solid var(--border); }
+      .pillar:last-child { border-bottom: none; }
+      .form-wrapper { flex-direction: column; }
+      .form-wrapper input { border-right: 1px solid var(--border); border-bottom: none; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="side-bar"></div>
+
+  <main>
+    <div class="container">
+
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/>
+            <path d="M8 8V6a2 2 0 0 1 4 0v2"/>
+            <path d="M9 13h6"/>
+          </svg>
+        </div>
+        <div class="brand-name">Bath in a Box</div>
+      </div>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        In Development
+      </div>
+
+      <div class="headline">Something<br/><em>refined</em></div>
+      <div class="headline-sub">is on its way.</div>
+
+      <div class="rule"></div>
+
+      <p class="description">
+        We're crafting an elevated bath experience, delivered to your door.
+        Thoughtfully curated, beautifully presented — launching soon.
+      </p>
+
+      <div class="form-label">Get early access</div>
+      <div class="form-wrapper">
+        <input type="email" placeholder="your@email.com" />
+        <button>Notify Me</button>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-label">Curated Products</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-label">Monthly Delivery</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-label">Premium Experience</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span>© 2026 Bath in a Box</span>
+    <a href="https://www.bathinabox.net">bathinabox.net</a>
+  </footer>
+
+</body>
+</html>
